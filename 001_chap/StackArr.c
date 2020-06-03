@@ -1,8 +1,10 @@
 #include <stdio.h>
-#include <conio.h>
-#include "stackarr.h"
+#include <curses.h>
+#include <stdbool.h>
 
-void StackCreate(Slack* S)
+#include "StackArr.h"
+
+void StackCreate(Stack* S)
 {
     S->Top = -1;
 }
@@ -34,7 +36,7 @@ TopElement Pop(Stack* S)
     }
 }
 
-boolean StackEmpty(Stack* S)
+bool StackEmpty(Stack* S)
 {
     if(S->Top == -1) {
         return TRUE;
@@ -44,7 +46,7 @@ boolean StackEmpty(Stack* S)
     }
 }
 
-boolean StackFull(Stack* S)
+bool StackFull(Stack* S)
 {
     if(S->Top == MaxStackArraySize - 1) {
         return TRUE;

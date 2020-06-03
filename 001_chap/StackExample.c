@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+#include <curses.h>
 
 #include "StackArr.h"
 
@@ -9,20 +9,20 @@ void main(void)
 
     StackCreate(&S);
 
-    Push(S, '1');
-    Push(S, '2');
+    Push(&S, '1');
+    Push(&S, '2');
 
     TopElement PopElement;
 
-    if((PpopElement = Pop(S)) != 10) {
+    if((PopElement = Pop(&S)) != 10) {
         printf("\nPop : %c", PopElement);
     }
 
-    if((PopElement = Pop(S)) != 10) {
+    if((PopElement = Pop(&S)) != 10) {
         printf("\nPop : %c", PopElement);
     }
 
-    if((PopElement = Pop(S)) != 10) {
+    if((PopElement = Pop(&S)) != 10) {
         printf("\nPop : %c", PopElement);
     }
 }
