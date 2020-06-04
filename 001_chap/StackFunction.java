@@ -1,54 +1,65 @@
 public class StackFunction
 {
-    public boolean stackIsEmpty(StackData stackData) {
-        return (stackData.getTop() < 0);
+    StackData stackData;
+    public StackFunction() {
+        stackData = new StackData();
     }
 
-    public boolean stackIsFull(StackData stackData) {
-        return (stackData.getTop() >= stackData.MAX_STACK);
+    public boolean stackIsEmpty() {
+        return (this.stackData.getTop() < 0);
     }
 
-    public boolean push(StackData stackData, Object newItem) {
-        if(stackIsFull(stackData)) {
+    public boolean stackIsFull() {
+        return (this.stackData.getTop() >= this.stackData.MAX_STACK);
+    }
+
+    public boolean push(Object newItem) {
+        System.out.print("push: ");
+        if(stackIsFull()) {
+            System.out.println("Insert Failed");
             return false;
         }
         else {
-            int newTop = stackData.getTop() + 1;
-            stackData.setTop(newTop);
-            stackData.setItem(newTop, newItem);
-            return true;
+            int newTop = this.stackData.getTop() + 1;
+            this.stackData.setTop(newTop);
+            this.stackData.setItem(newTop, newItem);
+            System.out.println(newItem);
+        return true;
         }
     }
 
-    public Object pop(StackData stackData) {
-        if(stackIsEmpty(stackData)) {
+    public Object pop() {
+        System.out.print("pop: ");
+        if(stackIsEmpty()) {
+            System.out.println("Failed");
             return null;
         }
         else {
             int currentTop = stackData.getTop();
-            Object item = stackData.getItem(currentTop);
-            stackData.setTop(currentTop - 1);
+            Object item = this.stackData.getItem(currentTop);
+            this.stackData.setTop(currentTop - 1);
+            System.out.println(item);
             return item;
         }
     }
 
-    public Object getStackTop(StackData stackData) {
-        if(stackIsEmpty(stackData)) {
+    public Object getStackTop() {
+        if(stackIsEmpty()) {
             return null;
         }
         else {
-            return stackData.getItem(stackData.getTop());
+            return this.stackData.getItem(this.stackData.getTop());
         }
     }
 
-    public void displayStack(StackData stackData) {
-        if(stackIsEmpty(stackData)) {
+    public void displayStack() {
+        if(stackIsEmpty()) {
             System.out.println("Empty Stack\n");
         }
         else {
             System.out.println("Stack\n------");
-            for(int i = stackData.getTop();i >= 0;i--) {
-                System.out.println(stackData.getItem(i));
+            for(int i = this.stackData.getTop();i >= 0;i--) {
+                System.out.println(this.stackData.getItem(i));
                 System.out.println(" ");
             }
         }
